@@ -3,6 +3,7 @@ import random
 FONT_COLOUR = (255, 255, 255)
 WIDTH = 800
 HEIGHT = 600
+# centreは英式のcenter
 CENTRE_X = WIDTH / 2
 CENTRE_Y = HEIGHT / 2
 CENTRE = (CENTRE_X, CENTRE_Y)
@@ -32,7 +33,7 @@ def draw():
 
 def update():
     global fruits
-    # len()はlengthのこと
+    # len()はlengthのこと。配列の中に要素がない。
     if len(fruits) == 0:
         fruits = make_fruits(current_level)
 
@@ -46,11 +47,19 @@ def make_fruits(number_of_extra_fruits):
 
 
 def get_items_to_create(number_of_extra_fruits):
-    return []
+    items_to_create = ["banana"]
+    for i in range(0, number_of_extra_fruits):
+        random_item = random.choice(ITEMS)
+        items_to_create.append(random_item)
+    return items_to_create
 
 
 def create_fruits(items_to_create):
-    return []
+    new_fruits = []
+    for item in items_to_create:
+        fruit = Actor(item)
+        new_fruits.append(fruit)
+    return new_fruits
 
 
 def layout_fruits(fruits_to_layout):
